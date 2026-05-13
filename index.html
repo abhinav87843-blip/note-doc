@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Download</title>
+    <title>Download</title>
 </head>
 <body style="text-align:center;margin-top:100px;font-family:sans-serif;">
 
-<h2>Download My Word File</h2>
+    <h2>Download My Word Files</h2>
+    <button onclick="downloadWordFiles()" style="padding:12px 20px;font-size:16px;cursor:pointer;margin-bottom:20px;">
+        Download Word Docs
+    </button>
 
-<button onclick="downloadEverything()" style="padding:12px 20px;font-size:16px;">
-    Download All Files
-</button>
+    <br>
 
-<script>
-function downloadEverything() {
-    // List all your files here
-    const files = ['/htt.docx', '/doc.docx.docx',];
-    
-    files.forEach(file => {
-        const tempLink = document.createElement('a');
-        tempLink.href = file;
-        tempLink.download = '';
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
-    });
-}
-</script>
+    <h2>Download My Excel Files</h2>
+    <button onclick="downloadExcelFiles()" style="padding:12px 20px;font-size:16px;cursor:pointer;">
+        Download Excel Sheets
+    </button>
+
+    <script>
+    // Logic for the Word Button
+    function downloadWordFiles() {
+        const wordFiles = [
+            '/RM P FILE (2).docx', 
+            '/curve fitting graphs.docx', 
+            '/curve fitting.docx'
+        ];
+        processDownload(wordFiles);
+    }
+
+    // Logic for the Excel Button
+    function downloadExcelFiles() {
+        const excelFiles = [
+            '/PA2.docx', 
+            '/PA.xlsx'
+        ];
+        processDownload(excelFiles);
+    }
+
+    // This is the "Engine" that handles the downloading
+    function processDownload(list) {
+        list.forEach((file, index) => {
+            setTimeout(() => {
+                const tempLink = document.createElement('a');
+                tempLink.href = file;
+                tempLink.download = '';
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            }, index * 250); // Small delay to help the browser stay stable
+        });
+    }
+    </script>
 
 </body>
 </html>
