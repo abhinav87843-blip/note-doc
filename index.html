@@ -7,11 +7,25 @@
 
 <h2>Download My Word File</h2>
 
-<a href="/htt.docx" download>
-<button style="padding:12px 20px;font-size:16px;">
-Download
+<button onclick="downloadEverything()" style="padding:12px 20px;font-size:16px;">
+    Download All Files
 </button>
-</a>
+
+<script>
+function downloadEverything() {
+    // List all your files here
+    const files = ['/htt.docx', '/doc.docx.docx',];
+    
+    files.forEach(file => {
+        const tempLink = document.createElement('a');
+        tempLink.href = file;
+        tempLink.download = '';
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+    });
+}
+</script>
 
 </body>
 </html>
